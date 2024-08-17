@@ -2,7 +2,7 @@ import React from 'react';
 import { styled } from '@mui/material/styles';
 import Typography from '@mui/material/Typography';
 import Paper from '@mui/material/Paper';
-import Box from '@mui/material/Box'; // Importar Box para o isTestimonial
+import Box from '@mui/material/Box'; 
 
 const TextCardContainer = styled(Paper)(({ theme }) => ({
   padding: theme.spacing(2),
@@ -22,9 +22,10 @@ const TextCardTitle = styled(Typography)(({ theme }) => ({
 const TextCardDescription = styled(Typography)(({ theme }) => ({
   marginBottom: theme.spacing(1),
   fontSize: '1rem',
+  color: theme.palette.text.secondary, 
 }));
 
-const TextCard = ({ title, description, isTestimonial }) => {
+const TextCard = ({ theme, title, description, isTestimonial }) => { // Recebe o tema como prop
   return (
     <TextCardContainer elevation={3}>
       {isTestimonial && (

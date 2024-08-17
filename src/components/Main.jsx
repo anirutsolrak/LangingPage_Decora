@@ -3,7 +3,7 @@ import { styled } from '@mui/material/styles';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
-import Button from '@mui/material/Button';
+import Button from '@mui/material/Button'; // Importar o Button do MUI
 
 const MainContainer = styled('div')(({ theme }) => ({
   textAlign: 'center',
@@ -26,7 +26,7 @@ const Description = styled(Typography)(({ theme }) => ({
   marginBottom: theme.spacing(2),
 }));
 
-const Main = ({ title, subtitle, description, buttonText }) => {
+const Main = ({ theme, title, subtitle, description, buttonText }) => { // Recebe o tema como prop
   return (
     <Box>
       <Container maxWidth="lg">
@@ -34,7 +34,24 @@ const Main = ({ title, subtitle, description, buttonText }) => {
         <Subtitle variant="h4">{subtitle}</Subtitle>
         <Description variant="body1">{description}</Description>
         {/* Passa a prop buttonText para o componente Button */}
-        <Button text={buttonText} />
+        <Button 
+          variant="contained" 
+          size="large" 
+          sx={{ 
+            backgroundColor: theme.palette.common.green, 
+            color: theme.palette.common.white, 
+            padding: theme.spacing(1, 2), 
+            fontSize: '1rem', 
+            fontWeight: 'bold', 
+            borderRadius: theme.spacing(1), 
+            transition: 'background-color 0.2s ease-in-out',
+            '&:hover': {
+              backgroundColor: theme.palette.primary.dark,
+            } 
+          }}
+        >
+          {buttonText}
+        </Button>
       </Container>
     </Box>
   );
