@@ -5,15 +5,42 @@ import ImageListItem from '@mui/material/ImageListItem';
 const itemData = [
   // Substitua com os dados das suas imagens
   {
-    img: 'https://mui.com/static/images/image-list/breakfast.jpg',
-    title: 'Café da Manhã',
+    img: '/imagem1.jpg', 
+    title: 'Image 1',
   },
-  // ... adicione mais imagens
+  {
+    img: '/imagem2.jpg', 
+    title: 'Image 2',
+  },
+  {
+    img: '/imagem3.jpg', 
+    title: 'Image 3',
+  },
+  {
+    img: '/imagem4.jpg', 
+    title: 'Image 4',
+  },
+  {
+    img: '/imagem5.jpg', 
+    title: 'Image 5',
+  },
+  {
+    img: '/imagem6.jpg', 
+    title: 'Image 6',
+  },
 ];
 
-export default function WovenImageList({ itemData }) {
+export default function WovenImageList({ itemData, theme }) {
   return (
-    <ImageList sx={{ width: 500, height: 450, backgroundColor: theme.palette.common.terracotta }} variant="woven" cols={3} gap={8}>
+    <ImageList sx={{ 
+      width: 500, 
+      height: 450, 
+      backgroundColor: 'gray', 
+      backgroundImage: `url('/border.jpg')`, // Use backgroundImage
+      backgroundRepeat: 'repeat-x', // Repete a imagem na horizontal
+      backgroundPosition: 'top',
+      padding: '5px' // Adicione a borda aqui
+    }} variant="woven" cols={3} gap={8}>
       {itemData.map((item) => (
         <ImageListItem key={item.img}>
           <img

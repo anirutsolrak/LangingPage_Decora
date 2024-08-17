@@ -14,19 +14,23 @@ const Title = styled(Typography)(({ theme }) => ({
   fontSize: '2.5rem',
   fontWeight: 'bold',
   marginBottom: theme.spacing(1),
+  color: theme.palette.common.terracotta, // Cor do título principal
+  textShadow: '2px 2px 4px rgba(0, 0, 0, 0.5)', // Sombra no título principal
 }));
 
 const Subtitle = styled(Typography)(({ theme }) => ({
   fontSize: '1.5rem',
   marginBottom: theme.spacing(2),
+  color: theme.palette.common.black, // Cor do subtítulo
 }));
 
 const Description = styled(Typography)(({ theme }) => ({
   fontSize: '1rem',
   marginBottom: theme.spacing(2),
+  color: theme.palette.common.black, // Cor da descrição
 }));
 
-const Main = ({ theme, title, subtitle, description, buttonText }) => { // Recebe o tema como prop
+const Main = ({ theme, title, subtitle, description, buttonText }) => { 
   return (
     <Box>
       <Container maxWidth="lg">

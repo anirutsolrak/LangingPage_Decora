@@ -17,12 +17,14 @@ const TextCardTitle = styled(Typography)(({ theme }) => ({
   fontWeight: 'bold',
   marginBottom: theme.spacing(1),
   fontSize: '1.2rem',
+  color: theme.palette.common.terracotta, // Cor do título do card
+  textShadow: '2px 2px 4px rgba(0, 0, 0, 0.5)', // Sombra no título do card
 }));
 
 const TextCardDescription = styled(Typography)(({ theme }) => ({
   marginBottom: theme.spacing(1),
   fontSize: '1rem',
-  color: theme.palette.text.secondary, 
+  color: theme.palette.common.white, // Cor da descrição do card
 }));
 
 const TextCard = ({ theme, title, description, isTestimonial }) => { // Recebe o tema como prop

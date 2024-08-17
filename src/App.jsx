@@ -62,7 +62,7 @@ const theme = createTheme({
       default: '#121212', 
     },
     text: {
-      primary: '#000000', 
+      primary: '#FFFFFF', 
       secondary: '#999999', 
     },
     common: {
@@ -78,7 +78,7 @@ const theme = createTheme({
 });
 
 const Root = styled('div')(({ theme }) => ({
-  backgroundImage: 'linear-gradient(to right, #f3ffff, #333333)', 
+  backgroundColor: 'gray', 
   minHeight: '100vh',
   display: 'flex',
   flexDirection: 'column',
@@ -103,6 +103,14 @@ const mosaicImages = [
   {
     img: '/imagem4.jpg', 
     title: 'Image 4',
+  },
+  {
+    img: '/imagem5.jpg', 
+    title: 'Image 5',
+  },
+  {
+    img: '/imagem6.jpg', 
+    title: 'Image 6',
   },
 ];
 
@@ -168,7 +176,7 @@ function App() {
         <Root>
           <Container maxWidth="lg" sx={{ mt: 4 }}> 
 
-          
+            
             <Box 
               sx={{
                 width: '100%',
@@ -178,18 +186,18 @@ function App() {
               }}
             />
 
-            <Box sx={{ display: 'flex', justifyContent: 'center', marginBottom: theme.spacing(8) }}> 
-              <img src="/logo.jpg" alt="Logo da Decora" width="200" height="auto" />
+            <Box sx={{ display: 'flex', justifyContent: 'start', marginBottom: theme.spacing(8) }}> 
+              <img src="/logo.png" alt="Logo da Decora" width="200" height="auto" />
             </Box>
 
-            <Main theme={theme} 
+          <Container maxWidth="lg" sx={{ mt: 4, display: 'flex', justifyContent: 'end' }}>
+            <Main theme={theme}   
               title="Transforme seu espaço, eleve sua vida."
               subtitle="O design que se adapta ao seu estilo de vida."
               description="Criamos móveis planejados que transformam ambientes comuns em espaços extraordinários, refletindo sua personalidade com sofisticação e funcionalidade."
               buttonText="Solicite Seu Projeto"
             />
-
-          
+            </Container>            
             <Grid container spacing={2} sx={{ mt: 2, width: '100%' }}> 
               {mosaicImages.map((image, index) => (
                 <Grid item xs={12} sm={6} md={3} key={index}>
@@ -198,14 +206,16 @@ function App() {
               ))}
             </Grid>
 
+            
+            <WovenImageList theme={theme} itemData={mosaicImages} /> 
             <Grid container spacing={2} sx={{ mt: 4, alignItems: 'center' }}> 
               <Grid item xs={12} md={6}> 
-                <Carousel theme={theme} images={carouselImages} />
+              <Carousel theme={theme} images={carouselImages} />
               </Grid>
               <Grid item xs={12} md={6}> 
                 <Box sx={{ mt: { xs: 4, md: 0 } }}> 
-                
-                  <Typography variant="h4" sx={{ mb: 2 }}>Seção de Benefícios: Sua Casa, Seu Jeito</Typography> 
+                  
+                  <Typography variant="h4" sx={{ mb: 2, color: theme.palette.common.terracotta }}>Seção de Benefícios: Sua Casa, Seu Jeito</Typography> 
                   {textContent.map((cardData, index) => (
                     <TextCard theme={theme} key={index} title={cardData.title} description={cardData.description} />
                   ))}
@@ -213,10 +223,10 @@ function App() {
               </Grid>
             </Grid>
 
-          
+            
             <Grid container spacing={2} sx={{ mt: 4 }}>
               <Grid item xs={12}>
-                <Typography variant="h4" sx={{ mb: 2 }}>Depoimento</Typography> 
+                <Typography variant="h4" sx={{ mb: 2, color: theme.palette.common.terracotta }}>Depoimento</Typography> 
                 {testimonialContent.map((testimonialData, index) => (
                   <TextCard 
                     theme={theme} 
@@ -230,7 +240,7 @@ function App() {
               </Grid>
             </Grid>
 
-          
+            
             <Box sx={{ mt: 8 }}> 
               <Button
                 variant="contained"
@@ -258,4 +268,4 @@ function App() {
   );
 }
 
-export default App
+export default App;

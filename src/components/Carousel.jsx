@@ -14,7 +14,7 @@ const CarouselContainer = styled('div')(({ theme }) => ({
   overflow: 'hidden', // Ocultar o overflow para evitar que as imagens ultrapassem o limite
 }));
 
-const CarouselComponent = ({ images }) => {
+const CarouselComponent = ({ images, theme }) => { // Recebe o tema como prop
   const [activeStep, setActiveStep] = useState(0);
   const handleStepChange = (step) => {
     setActiveStep(step);
@@ -44,13 +44,13 @@ const CarouselComponent = ({ images }) => {
       </SwipeableViews>
       <Button
         onClick={() => handleStepChange((activeStep - 1 + images.length) % images.length)}
-        sx={{ position: 'absolute', top: '50%', left: 16, transform: 'translateY(-50%)', zIndex: 1 }}
+        sx={{ position: 'absolute', top: '50%', left: 16, transform: 'translateY(-50%)', zIndex: 1, backgroundColor: theme.palette.common.white, color: theme.palette.common.black }}
       >
         <KeyboardArrowLeftIcon />
       </Button>
       <Button
         onClick={() => handleStepChange((activeStep + 1) % images.length)}
-        sx={{ position: 'absolute', top: '50%', right: 16, transform: 'translateY(-50%)', zIndex: 1 }}
+        sx={{ position: 'absolute', top: '50%', right: 16, transform: 'translateY(-50%)', zIndex: 1, backgroundColor: theme.palette.common.white, color: theme.palette.common.black }}
       >
         <KeyboardArrowRightIcon />
       </Button>
