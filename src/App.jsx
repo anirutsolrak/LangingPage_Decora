@@ -104,14 +104,6 @@ const mosaicImages = [
     img: '/imagem4.jpg', 
     title: 'Image 4',
   },
-  {
-    img: '/imagem5.jpg', 
-    title: 'Image 5',
-  },
-  {
-    img: '/imagem6.jpg', 
-    title: 'Image 6',
-  },
 ];
 
 // Array de imagens para o carrossel
@@ -174,59 +166,68 @@ function App() {
       <CssBaseline />
       <BrowserRouter>
         <Root>
-          <Container maxWidth="lg" sx={{ mt: 4 }}> 
-
-            
-            <Box 
-              sx={{
-                width: '100%',
-                height: 200,
-                backgroundImage: 'linear-gradient(to right, #f3ffff, #333333)', 
-                marginBottom: theme.spacing(4),
-              }}
-            />
-
-            <Box sx={{ display: 'flex', justifyContent: 'start', marginBottom: theme.spacing(8) }}> 
-              <img src="/logo.png" alt="Logo da Decora" width="200" height="auto" />
-            </Box>
-
-          <Container maxWidth="lg" sx={{ mt: 4, display: 'flex', justifyContent: 'end' }}>
-            <Main theme={theme}   
-              title="Transforme seu espaço, eleve sua vida."
-              subtitle="O design que se adapta ao seu estilo de vida."
-              description="Criamos móveis planejados que transformam ambientes comuns em espaços extraordinários, refletindo sua personalidade com sofisticação e funcionalidade."
-              buttonText="Solicite Seu Projeto"
-            />
-            </Container>            
-            <Grid container spacing={2} sx={{ mt: 2, width: '100%' }}> 
-              {mosaicImages.map((image, index) => (
-                <Grid item xs={12} sm={6} md={3} key={index}>
-                  <img src={image.img} alt={image.alt} style={{ width: '100%', height: 'auto' }} />
-                </Grid>
-              ))}
+          <Container sx={{ mt: 0 }}>            
+            <Grid container spacing={2} sx={{ ml: 2, mt: 2, alignItems: 'center', width: '100%' }}> 
+                <Box sx={{ width: 150, height: 125, borderRadius: '70%', overflow: 'hidden', backgroundColor: 'gray', display: 'flex', }}>
+                  <img src="/logo.png" alt="Logo da Decora" style={{ width: '100%', height: '100%' }} />
+                </Box>
+                <Typography variant="h4" sx={{ml: 4, mt: 2, color: theme.palette.common.terracotta, textShadow: '2px 2px 4px rgba(0, 0, 0, 0.5)' }}>Transforme seu espaço, eleve sua vida.</Typography> 
+             
+                <Box sx={{ ml: 4, mt: 2, width: '100%' }}> 
+          
+                  <Typography variant="h4" sx={{ color: theme.palette.common.white }}>O design que se adapta ao seu estilo de vida</Typography> 
+                  <Typography variant="h6" sx={{ color: theme.palette.common.white, mb: 2, textShadow: '2px 2px 4px rgba(0, 0, 0, 0.5)' }}>Criamos móveis planejados que transformam ambientes comuns em espaços extraordinários, refletindo sua personalidade com sofisticação e funcionalidade.</Typography> 
+                  <Button
+                    variant="contained"
+                    size="large"
+                    sx={{
+                      backgroundColor: theme.palette.common.green, 
+                      color: theme.palette.common.white, 
+                      padding: theme.spacing(1, 2),
+                      fontSize: '1rem',
+                      fontWeight: 'bold',
+                      borderRadius: theme.spacing(1),
+                      transition: 'background-color 0.2s ease-in-out',
+                      '&:hover': {
+                        backgroundColor: theme.palette.primary.dark,
+                      },
+                    }}
+                  >
+                    Solicite Seu Projeto
+                  </Button>
+                </Box>
+              
             </Grid>
 
             
-            <WovenImageList theme={theme} itemData={mosaicImages} /> 
-            <Grid container spacing={2} sx={{ mt: 4, alignItems: 'center' }}> 
-              <Grid item xs={12} md={6}> 
-              <Carousel theme={theme} images={carouselImages} />
+            <Grid container spacing={2} sx={{ mt: 4 }}> 
+               
+                <Carousel theme={theme} images={carouselImages} /> 
+              
               </Grid>
-              <Grid item xs={12} md={6}> 
+              <Grid container spacing={2} sx={{ mt: 4 }}> 
+               
                 <Box sx={{ mt: { xs: 4, md: 0 } }}> 
-                  
-                  <Typography variant="h4" sx={{ mb: 2, color: theme.palette.common.terracotta }}>Seção de Benefícios: Sua Casa, Seu Jeito</Typography> 
+                  <Typography variant="h4" sx={{ mb: 2, color: theme.palette.common.terracotta, textShadow: '2px 2px 4px rgba(0, 0, 0, 0.5)' }}>Seção de Benefícios: Sua Casa, Seu Jeito</Typography> 
                   {textContent.map((cardData, index) => (
                     <TextCard theme={theme} key={index} title={cardData.title} description={cardData.description} />
                   ))}
                 </Box>
+           
+                <Box sx={{ mt: 2 }}> 
+                  {textContent.slice(1, 5).map((cardData, index) => (
+                    <TextCard theme={theme} key={index} title={cardData.title} description={cardData.description} />
+                  ))}
+                </Box>
+                
+                <TextCard theme={theme} title={textContent[5].title} description={textContent[5].description} />
               </Grid>
-            </Grid>
+            
 
             
             <Grid container spacing={2} sx={{ mt: 4 }}>
               <Grid item xs={12}>
-                <Typography variant="h4" sx={{ mb: 2, color: theme.palette.common.terracotta }}>Depoimento</Typography> 
+                <Typography variant="h4" sx={{ mb: 2, color: theme.palette.common.terracotta, textShadow: '2px 2px 4px rgba(0, 0, 0, 0.5)' }}>Depoimento</Typography> 
                 {testimonialContent.map((testimonialData, index) => (
                   <TextCard 
                     theme={theme} 

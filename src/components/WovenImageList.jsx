@@ -20,27 +20,11 @@ const itemData = [
     img: '/imagem4.jpg', 
     title: 'Image 4',
   },
-  {
-    img: '/imagem5.jpg', 
-    title: 'Image 5',
-  },
-  {
-    img: '/imagem6.jpg', 
-    title: 'Image 6',
-  },
 ];
 
-export default function WovenImageList({ itemData, theme }) {
+export default function WovenImageList({ itemData, theme }) { // Recebe o tema como prop
   return (
-    <ImageList sx={{ 
-      width: 500, 
-      height: 450, 
-      backgroundColor: 'gray', 
-      backgroundImage: `url('/border.jpg')`, // Use backgroundImage
-      backgroundRepeat: 'repeat-x', // Repete a imagem na horizontal
-      backgroundPosition: 'top',
-      padding: '5px' // Adicione a borda aqui
-    }} variant="woven" cols={3} gap={8}>
+    <ImageList sx={{ width: 500, height: 450, backgroundColor: theme.palette.common.white, border: '1px solid black' }} variant="woven" cols={3} gap={8}>
       {itemData.map((item) => (
         <ImageListItem key={item.img}>
           <img

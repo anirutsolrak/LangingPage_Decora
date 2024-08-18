@@ -37,7 +37,7 @@ const Main = ({ theme, title, subtitle, description, buttonText }) => {
         <Title variant="h1">{title}</Title>
         <Subtitle variant="h4">{subtitle}</Subtitle>
         <Description variant="body1">{description}</Description>
-        {/* Passa a prop buttonText para o componente Button */}
+
         <Button 
           variant="contained" 
           size="large" 

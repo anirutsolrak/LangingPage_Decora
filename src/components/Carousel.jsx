@@ -10,7 +10,7 @@ import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 const CarouselContainer = styled('div')(({ theme }) => ({
   position: 'relative',
   width: '100%',
-  height: 400,
+  height: 500, // Ajuste da altura do carrossel
   overflow: 'hidden', // Ocultar o overflow para evitar que as imagens ultrapassem o limite
 }));
 
