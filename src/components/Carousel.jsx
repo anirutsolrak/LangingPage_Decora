@@ -6,11 +6,12 @@ import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft';
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
+import Grid from '@mui/material/Grid'; // Importar Grid
 
 const CarouselContainer = styled('div')(({ theme }) => ({
   position: 'relative',
   width: '100%',
-  height: 500, // Ajuste da altura do carrossel
+  height: 600, // Ajuste da altura do carrossel
   overflow: 'hidden', // Ocultar o overflow para evitar que as imagens ultrapassem o limite
 }));
 
@@ -37,9 +38,11 @@ const CarouselComponent = ({ images, theme }) => { // Recebe o tema como prop
         )}
       >
         {images.map((image, index) => (
-          <div key={index}>
-            <img src={image.src} alt={image.alt} loading="lazy" style={{ width: '100%', height: 'auto' }} />
-          </div>
+          <Grid container spacing={2} key={index} sx={{alignItems: 'center', justifyContent: 'center'}}>
+            <Grid item xs={12}>
+              <img src={image.src} alt={image.alt} loading="lazy" style={{ width: '100%', height: 'auto' }} />
+            </Grid>
+          </Grid>
         ))}
       </SwipeableViews>
       <Button

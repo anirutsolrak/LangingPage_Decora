@@ -2,10 +2,7 @@ import React from 'react';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import { styled } from '@mui/material/styles';
-import ImageGallery from './components/ImageGallery';
 import Carousel from './components/Carousel'; 
-import WovenImageList from './components/WovenImageList'; 
-import TextCard from './components/TextCard';
 import Button from '@mui/material/Button';
 import Main from './components/Main';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
@@ -14,6 +11,7 @@ import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
 import Slider from 'react-slick'; // Importar React Slick
+import Footer from './components/Footer'; // Importar o Footer
 
 // Estilos para o React Slick
 const settings = {
@@ -51,7 +49,7 @@ const settings = {
 
 const theme = createTheme({
   palette: {
-    mode: 'dark',
+    mode: 'light', // Mudar para modo claro
     primary: {
       main: '#f3ffff',
     },
@@ -59,11 +57,11 @@ const theme = createTheme({
       main: '#333333',
     },
     background: {
-      default: '#121212', 
+      default: '#FFFFFF', // Branco como fundo padrão
     },
     text: {
-      primary: '#FFFFFF', 
-      secondary: '#999999', 
+      primary: '#000000', // Preto como texto principal
+      secondary: '#888888', // Cinza como texto secundário
     },
     common: {
       black: '#000000', 
@@ -78,33 +76,14 @@ const theme = createTheme({
 });
 
 const Root = styled('div')(({ theme }) => ({
-  backgroundColor: 'gray', 
+  //backgroundImage: 'linear-gradient(to right, #f3ffff, #333333)', // Remover o degradê 
   minHeight: '100vh',
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'center',
   padding: theme.spacing(2),
+  backgroundColor: theme.palette.background.default // Usar a cor branca como background
 }));
-
-// Array de imagens para o mosaico
-const mosaicImages = [
-  {
-    img: '/imagem1.jpg', 
-    title: 'Image 1',
-  },
-  {
-    img: '/imagem2.jpg', 
-    title: 'Image 2',
-  },
-  {
-    img: '/imagem3.jpg', 
-    title: 'Image 3',
-  },
-  {
-    img: '/imagem4.jpg', 
-    title: 'Image 4',
-  },
-];
 
 // Array de imagens para o carrossel
 const carouselImages = [
@@ -166,17 +145,34 @@ function App() {
       <CssBaseline />
       <BrowserRouter>
         <Root>
-          <Container sx={{ mt: 0 }}>            
-            <Grid container spacing={2} sx={{ ml: 2, mt: 2, alignItems: 'center', width: '100%' }}> 
-                <Box sx={{ width: 150, height: 125, borderRadius: '70%', overflow: 'hidden', backgroundColor: 'gray', display: 'flex', }}>
+          <Container maxWidth="lg" sx={{ mt: 4 }}> 
+
+            {/* Banner com degradê */}
+            <Box 
+              sx={{
+                width: '100%',
+                height: 80, 
+                backgroundImage: `url('/border.jpg')`, 
+                backgroundRepeat: 'repeat-x', 
+                backgroundPosition: 'top', 
+                marginBottom: theme.spacing(4),
+                padding: 0, 
+                border: 'none', 
+              }}
+            >
+              <Typography variant="h5" sx={{ color: theme.palette.common.green, fontWeight: 'bold', textAlign: 'center', padding: theme.spacing(2) }}>Compre móveis de qualidade com entrega rápida e garantia!</Typography>
+            </Box>
+
+            {/* Logo e Texto */}
+            <Grid container spacing={2} sx={{ mt: 2, alignItems: 'center' }}> 
+              <Grid item xs={12} md={4} sx={{ display: 'flex', alignItems: 'center' }}> 
+                <Box sx={{ width: 150, height: 125, borderRadius: '50%', overflow: 'hidden', backgroundColor: theme.palette.common.white, border: '1px solid #ccc' }}>
                   <img src="/logo.png" alt="Logo da Decora" style={{ width: '100%', height: '100%' }} />
                 </Box>
-                <Typography variant="h4" sx={{ml: 4, mt: 2, color: theme.palette.common.terracotta, textShadow: '2px 2px 4px rgba(0, 0, 0, 0.5)' }}>Transforme seu espaço, eleve sua vida.</Typography> 
-             
-                <Box sx={{ ml: 4, mt: 2, width: '100%' }}> 
-          
-                  <Typography variant="h4" sx={{ color: theme.palette.common.white }}>O design que se adapta ao seu estilo de vida</Typography> 
-                  <Typography variant="h6" sx={{ color: theme.palette.common.white, mb: 2, textShadow: '2px 2px 4px rgba(0, 0, 0, 0.5)' }}>Criamos móveis planejados que transformam ambientes comuns em espaços extraordinários, refletindo sua personalidade com sofisticação e funcionalidade.</Typography> 
+                <Box sx={{ ml: 4, mt: 2 }}> 
+                  <Typography variant="h4" sx={{ mb: 1, color: theme.palette.common.terracotta, textShadow: '2px 2px 4px rgba(0, 0, 0, 0.5)' }}>Móveis de Qualidade e Durabilidade</Typography> 
+                  <Typography variant="subtitle1" sx={{ color: theme.palette.common.black }}>Entrega Rápida e Garantia</Typography> 
+                  <Typography variant="body2" sx={{ color: theme.palette.common.black, mb: 2 }}>Encontre os melhores móveis para sua casa, com qualidade, durabilidade e entrega rápida. Aproveite a garantia de satisfação e renove seu lar com estilo.</Typography> 
                   <Button
                     variant="contained"
                     size="large"
@@ -193,55 +189,42 @@ function App() {
                       },
                     }}
                   >
-                    Solicite Seu Projeto
+                    Compre Agora
                   </Button>
                 </Box>
-              
+              </Grid>
+              <Grid item xs={12} md={8}> 
+                {/* ... (Conteúdo do Carousel) */}
+              </Grid>
             </Grid>
 
-            
+            {/* Carrossel e Seção de Benefícios */}
             <Grid container spacing={2} sx={{ mt: 4 }}> 
-               
+              <Grid item xs={12} md={6}> {/* Carousel à esquerda */}
                 <Carousel theme={theme} images={carouselImages} /> 
-              
               </Grid>
-              <Grid container spacing={2} sx={{ mt: 4 }}> 
-               
-                <Box sx={{ mt: { xs: 4, md: 0 } }}> 
-                  <Typography variant="h4" sx={{ mb: 2, color: theme.palette.common.terracotta, textShadow: '2px 2px 4px rgba(0, 0, 0, 0.5)' }}>Seção de Benefícios: Sua Casa, Seu Jeito</Typography> 
-                  {textContent.map((cardData, index) => (
-                    <TextCard theme={theme} key={index} title={cardData.title} description={cardData.description} />
-                  ))}
-                </Box>
-           
-                <Box sx={{ mt: 2 }}> 
-                  {textContent.slice(1, 5).map((cardData, index) => (
-                    <TextCard theme={theme} key={index} title={cardData.title} description={cardData.description} />
-                  ))}
-                </Box>
-                
-                <TextCard theme={theme} title={textContent[5].title} description={textContent[5].description} />
+              <Grid item xs={12} md={6} sx={{  }}> {/* Seção de Benefícios à direita */}
+                <Grid container spacing={2} sx={{ mt: 0, alignItems: 'center', width: '100%' }}>
+                  <Grid item xs={12} sx={{  }}>
+                    <Typography variant="h4" sx={{ mb: 2, color: theme.palette.common.terracotta, textShadow: '2px 2px 4px rgba(0, 0, 0, 0.5)' }}>Seção de Benefícios</Typography> 
+                    <Typography variant="body1" sx={{ color: theme.palette.common.black, mb: 2 }}>Entrega rápida em até 24 horas.</Typography>
+                    <Typography variant="body1" sx={{ color: theme.palette.common.black, mb: 2 }}>Frete grátis para compras acima de R$ 500.</Typography>
+                    <Typography variant="body1" sx={{ color: theme.palette.common.black, mb: 2 }}>Parcelamento em até 12x sem juros.</Typography>
+                    <Typography variant="body1" sx={{ color: theme.palette.common.black, mb: 2 }}>Garantia de 1 ano.</Typography>
+                  </Grid>
+                </Grid>
               </Grid>
-            
+            </Grid>
 
-            
+            {/* Depoimento */}
             <Grid container spacing={2} sx={{ mt: 4 }}>
               <Grid item xs={12}>
                 <Typography variant="h4" sx={{ mb: 2, color: theme.palette.common.terracotta, textShadow: '2px 2px 4px rgba(0, 0, 0, 0.5)' }}>Depoimento</Typography> 
-                {testimonialContent.map((testimonialData, index) => (
-                  <TextCard 
-                    theme={theme} 
-                    key={index} 
-                    title={testimonialData.title} 
-                    description={testimonialData.description} 
-                    isTestimonial 
-                    sx={{ border: '1px solid #ccc' }} 
-                  />
-                ))}
+                <Typography variant="body1" sx={{ color: theme.palette.common.black, mb: 2 }}>"Adorei a experiência de comprar meus móveis com a Decora! A entrega foi super rápida, o móvel é de ótima qualidade e a garantia me deixou tranquila. Recomendo a Decora para todos!"</Typography>
               </Grid>
             </Grid>
 
-            
+            {/* Botão */}
             <Box sx={{ mt: 8 }}> 
               <Button
                 variant="contained"
@@ -259,9 +242,11 @@ function App() {
                   },
                 }}
               >
-                Solicite Seu Projeto
+                Compre Agora
               </Button>
             </Box>
+
+            <Footer theme={theme}/>
           </Container>
         </Root>
       </BrowserRouter>
